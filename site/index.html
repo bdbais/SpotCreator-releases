@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SpotCreator — spot pubblicitari con AI locale</title>
+<meta name="description" content="Programma Windows gratuito che crea spot pubblicitari professionali con l'AI: attori, prodotto e prompt diventano un video con voce, musica, sottotitoli ed effetti.">
+<meta property="og:title" content="SpotCreator">
+<meta property="og:description" content="Spot pubblicitari professionali con AI locale, in 14 lingue.">
+<meta property="og:image" content="https://spotcreator.bais.info/icon.png">
+<link rel="icon" href="/icon.png">
+<style>
+:root{--bg:#0e0f13;--panel:#17191f;--line:#262932;--txt:#ecedf0;--mut:#9aa0ab;--a1:#ff5a36;--a2:#c8287a;--gold:#ffc439}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--txt);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:5;background:rgba(14,15,19,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:14px;height:62px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;text-decoration:none}
+.logo img{width:34px;height:34px}
+header nav{margin-inline-start:auto;display:flex;gap:10px;align-items:center}
+select{max-width:120px;background:var(--panel);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:inherit;font-size:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 20px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-size:16px}
+.btn.main{background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;box-shadow:0 10px 30px -10px rgba(255,90,54,.6)}
+.btn.ghost{background:var(--panel);border:1px solid var(--line)}
+.btn.don{background:var(--gold);color:#111}
+.btn.sm{padding:7px 14px;font-size:14px;border-radius:9px}
+.hero{padding:84px 0 56px;text-align:center;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-40% -10% auto;height:620px;background:radial-gradient(closest-side,rgba(255,90,54,.22),transparent),radial-gradient(closest-side at 70% 60%,rgba(200,40,122,.18),transparent);z-index:-1}
+.hero img{width:104px;height:104px;filter:drop-shadow(0 16px 30px rgba(255,90,54,.35))}
+h1{font-size:clamp(34px,6vw,62px);line-height:1.05;margin:18px 0 14px;letter-spacing:-1px}
+h1 span{background:linear-gradient(135deg,var(--a1),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(17px,2.2vw,21px);color:var(--mut);max-width:760px;margin:0 auto 30px}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.meta{margin-top:14px;color:var(--mut);font-size:14px}
+.langs{margin-top:22px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.langs span{border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:13px;color:var(--mut)}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(26px,3.5vw,36px);margin:0 0 8px;letter-spacing:-.5px}
+.sub{color:var(--mut);margin:0 0 30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px}
+.card b{display:block;font-size:17px;margin:8px 0 4px}
+.card p{margin:0;color:var(--mut);font-size:15px}
+.ico{font-size:26px}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.steps div{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;position:relative}
+.steps div:before{counter-increment:s;content:counter(s);display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));font-weight:800;margin-bottom:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.two>*,.grid>*{min-width:0}
+@media(max-width:760px){.two{grid-template-columns:1fr}header nav .hide-m{display:none}}
+@media(max-width:520px){header .wrap{gap:8px}header nav{gap:6px}header .btn.sm.don{font-size:0;padding:7px 11px}header .btn.sm.don:before{content:"\2764";font-size:16px}.btn{white-space:normal;text-align:center}}
+code{background:#000;border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:14px}
+pre{white-space:pre-wrap;word-break:break-word;background:#000;border:1px solid var(--line);border-radius:12px;padding:14px;overflow:auto;font-size:14px;color:#cfd3da}
+ul.req{margin:0;padding-inline-start:20px;color:var(--mut)}
+.donate{text-align:center;background:linear-gradient(135deg,rgba(255,196,57,.08),rgba(255,90,54,.08));border:1px solid var(--line);border-radius:20px;padding:34px 20px}
+footer{padding:30px 0 50px;color:var(--mut);font-size:14px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+[dir=rtl] .steps div:before{margin-inline-start:0}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="/"><img src="/icon.png" alt="">SpotCreator</a>
+  <nav>
+    <select id="lang" aria-label="Language"></select>
+    <a class="btn sm ghost hide-m" href="https://bais.info">bais.info</a>
+    <a class="btn sm don" href="{{donate}}" target="_blank" rel="noopener" data-i="donate">❤ Dona</a>
+  </nav>
+</div></header>
+
+<main>
+<div class="hero"><div class="wrap">
+  <img src="/icon.png" alt="SpotCreator">
+  <h1 data-i="h1">Spot pubblicitari <span>professionali</span>, creati dall'AI sul tuo PC</h1>
+  <p class="lead" data-i="lead">Carica le foto degli attori e del prodotto, scrivi cosa vuoi comunicare: SpotCreator scrive lo storyboard, sceglie le ambientazioni, anima le scene e consegna il video con voce, musica, sottotitoli ed effetti.</p>
+  <div class="cta">
+    <a class="btn main" href="/download" data-i="download">⬇ Scarica per Windows</a>
+    <a class="btn ghost" href="https://github.com/bdbais/SpotCreator-releases/releases" data-i="all">Tutte le versioni</a>
+  </div>
+  <div class="meta"><span data-i="version">Versione</span> {{versione}} · {{peso}} · Windows 10/11 64-bit · <span data-i="free">gratuito</span></div>
+  <div class="langs" id="langchips"></div>
+</div></div>
+
+<section id="features"><div class="wrap">
+  <h2 data-i="f_title">Tutto quello che serve per uno spot</h2>
+  <p class="sub" data-i="f_sub">Dal prompt al file finale, senza montare a mano.</p>
+  <div class="grid">
+    <div class="card"><span class="ico">🎬</span><b data-i="f1">Storyboard con AI</b><p data-i="f1d">Scene con aggancio, problema, soluzione e call to action. LLM locale (Ollama) o online con la tua API key. Elenco scene modificabile o scritto da te.</p></div>
+    <div class="card"><span class="ico">🧑‍🎤</span><b data-i="f2">Attori e prodotto</b><p data-i="f2d">Scontorno automatico, ombre, ingressi animati. Incolla foto e video direttamente da WhatsApp e Telegram.</p></div>
+    <div class="card"><span class="ico">🏙️</span><b data-i="f3">Ambientazioni gratuite</b><p data-i="f3d">Sfondi da archivi liberi (Openverse, Wikimedia, Pexels, Pixabay) con crediti automatici, oppure generati da SDXL e FLUX.</p></div>
+    <div class="card"><span class="ico">🎥</span><b data-i="f4">Camera ed effetti</b><p data-i="f4d">Movimenti 2.5D con parallax, image-to-video AI (LTX-Video, Wan), 17 transizioni, color grading, LUT, grana, barre cinema.</p></div>
+    <div class="card"><span class="ico">🎙️</span><b data-i="f5">Voce e sottotitoli</b><p data-i="f5d">Voce fuori campo in 14 lingue, anche clonata da un campione. Sottotitoli parola per parola sincronizzati, versioni doppiate in un clic.</p></div>
+    <div class="card"><span class="ico">🎵</span><b data-i="f6">Musica dalla tua cartella</b><p data-i="f6d">Crossfade tra brani, abbassamento automatico sotto la voce, loudness da broadcast (−14 LUFS). Video lunghi senza limiti pratici.</p></div>
+    <div class="card"><span class="ico">🧠</span><b data-i="f7">Impara il tuo stile</b><p data-i="f7d">Importa video da YouTube, TikTok, Instagram o da una cartella: ritmo, inquadrature e colori diventano il tuo modello, migliorato in locale.</p></div>
+    <div class="card"><span class="ico">🖥️</span><b data-i="f8">Più PC insieme</b><p data-i="f8d">Benchmark dell'hardware con stima dei tempi. Avvia altri PC come nodi: le scene si dividono da sole tra le postazioni.</p></div>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <h2 data-i="h_title">Come funziona</h2>
+  <p class="sub" data-i="h_sub">Cinque passi, il resto lo fa SpotCreator.</p>
+  <div class="steps">
+    <div data-i="s1">Scrivi il prompt e scegli durata, formato e lingue.</div>
+    <div data-i="s2">Aggiungi foto degli attori e foto o video del prodotto.</div>
+    <div data-i="s3">Genera lo storyboard e ritocca le scene che vuoi.</div>
+    <div data-i="s4">Guarda la stima dei tempi e, se vuoi, aggiungi altri PC.</div>
+    <div data-i="s5">Premi «Crea lo spot»: ricevi MP4, sottotitoli e miniatura.</div>
+  </div>
+</div></section>
+
+<section id="telegram"><div class="wrap two">
+  <div class="card">
+    <span class="ico">✈️</span><b data-i="t_title">Crea spot dal telefono</b>
+    <p data-i="t_desc">Collega il tuo bot Telegram: mandi prompt, foto e video, scrivi /render e il video arriva nella chat.</p>
+    <pre>/new Lancio estate
+Bibita energetica per runner urbani
+/product Volt  → 📷📷
+/actor Marco   → 📷
+/settings durata=30 formato=9:16 lingue=en,fr
+/render</pre>
+  </div>
+  <div class="card">
+    <span class="ico">⚙️</span><b data-i="r_title">Requisiti</b>
+    <ul class="req">
+      <li data-i="r1">Windows 10 o 11 a 64 bit, 8 GB di RAM (16 consigliati)</li>
+      <li data-i="r2">Funziona anche senza GPU: movimenti di camera, archivio gratuito, voce online</li>
+      <li data-i="r3">GPU NVIDIA da 8–12 GB per immagini AI, 16 GB o più per video AI</li>
+      <li data-i="r4">Componenti AI installabili dall'app con un clic</li>
+      <li data-i="r5">Aggiornamenti automatici</li>
+    </ul>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="donate">
+    <h2 data-i="d_title">Ti è utile?</h2>
+    <p class="sub" data-i="d_sub">SpotCreator è gratuito. Una donazione aiuta a farlo crescere.</p>
+    <a class="btn don" href="{{donate}}" target="_blank" rel="noopener" data-i="donate">❤ Dona</a>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>© 2026 <a href="https://bais.info">bais.info</a> · SpotCreator {{versione}}</span>
+  <span><a href="https://github.com/bdbais/SpotCreator-releases/releases" data-i="all">Tutte le versioni</a> · <a href="{{donate}}" target="_blank" rel="noopener">PayPal</a></span>
+</div></footer>
+
+<script src="/i18n.js"></script>
+<script>
+(function(){
+  var L = window.SC_I18N || {}, NAMES = window.SC_NAMES || {};
+  var sel = document.getElementById('lang'), chips = document.getElementById('langchips');
+  Object.keys(NAMES).forEach(function(k){
+    var o = document.createElement('option'); o.value = k; o.textContent = NAMES[k]; sel.appendChild(o);
+    var c = document.createElement('span'); c.textContent = NAMES[k]; chips.appendChild(c);
+  });
+  var it = {};
+  document.querySelectorAll('[data-i]').forEach(function(e){ it[e.dataset.i] = e.innerHTML; });
+  function apply(lang){
+    var t = L[lang] || {};
+    document.querySelectorAll('[data-i]').forEach(function(e){ e.innerHTML = t[e.dataset.i] || it[e.dataset.i]; });
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    if (t.h1) document.title = 'SpotCreator — ' + t.h1.replace(/<[^>]+>/g, '');
+    sel.value = lang;
+    try { localStorage.setItem('sc_lang', lang); } catch (e) {}
+  }
+  var saved = null; try { saved = localStorage.getItem('sc_lang'); } catch (e) {}
+  var nav = (navigator.language || 'it').toLowerCase().split('-')[0];
+  if (nav === 'tl') nav = 'fil';
+  apply(saved || (NAMES[nav] ? nav : 'it'));
+  sel.addEventListener('change', function(){ apply(sel.value); });
+})();
+</script>
+</body>
+</html>
